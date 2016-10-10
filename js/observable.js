@@ -126,8 +126,7 @@ $('.dice').each( function(){
 })
 
 function holddice(){
-    var dice = document.getElementsByClassName("dice-value");
-    var onhold 
+   document.addClass("holdthis");/*jonas*/
     
     
 }
