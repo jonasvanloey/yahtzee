@@ -107,28 +107,78 @@ $('.dice').each( function(){
 	// Get key of lastly added dice
 	var lastlyAddedDiceKey = yahtzeeModel.dices.length - 1
 	
-	// Retrieve lastly added key from model
+	// Retrieve lastly added dice from model
 	var currentDice = yahtzeeModel.dices[ lastlyAddedDiceKey ];
+    currentDice.isVast = false;
+
     var throwdice = document.getElementsByClassName('throw');
    
     console.log(throwdice);
+    
+    currentDice.throwIndividualDice = function() {
+        
+        if ( !currentDice.isVast )
+        {
+        // Generate number between 1-6
+        var randomNumber = Math.floor( Math.random() * 6  ) + 1
 
-	// Add event listener to button in dice
-	$ (throwdice).on('click', function() {
-
-		// Generate number between 1-6
-		var randomNumber = Math.floor( Math.random() * 6  ) + 1
-
-		// Update dice value
-		currentDice.publish( randomNumber );
-		
-	});
+        // Update dice value
+        currentDice.publish( randomNumber );
+        
+        }
+    }
+    
+    $( this ).find('.hold').on('click', function() {
+    
+        console.log("test");
+        $(this).toggleClass("holdit");
+        
+        if ( currentDice.isVast === false) {
+            currentDice.isVast = true;
+        } else {
+            currentDice.isVast = false;
+        };
+    })
+    
+//    $('.hold').on('click',function(){
+//
+//        var clickedbtn = document.getElementsByClassName('dice-value-'+this.id);
+//        console.log("test", clickedbtn);
+//        clickedbtn.addClass = 'holdit';
+//    });
 })
 
-function holddice(){
-   document.addClass("holdthis");/*jonas*/
+// Add event listener to button in dice
+	$ ('.throw').on('click', function() {
+
+		yahtzeeModel.dices.forEach( function( dice ) {
+            
+            dice.throwIndividualDice();
+            
+        })
+		
+	});
+
+/*function holddice(){
+   var clickedbtn = document.getElementsByClassName(this.id);
+    console.log(clickedbtn);
     
     
+    
+    
+}*/
+
+
+function yahtzee()
+{ var dice1 = document.getElementsByClassName('1')
+var dice2 = document.getElementsByClassName('2')
+var dice3 = document.getElementsByClassName('3')
+var dice4 = document.getElementsByClassName('4')
+var dice5 = document.getElementsByClassName('5')
+    if (dice1=dice2=dice3=dice4=dice5)
+    {
+        var yahtzee = 50;
+    }
 }
 // Functionality used to make creation of die easier
 // @container jQuery object
