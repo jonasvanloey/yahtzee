@@ -110,10 +110,6 @@ $('.dice').each( function(){
 	// Retrieve lastly added dice from model
 	var currentDice = yahtzeeModel.dices[ lastlyAddedDiceKey ];
     currentDice.isVast = false;
-
-    var throwdice = document.getElementsByClassName('throw');
-   
-    console.log(throwdice);
     
     currentDice.throwIndividualDice = function() {
         
@@ -140,12 +136,7 @@ $('.dice').each( function(){
         };
     })
     
-//    $('.hold').on('click',function(){
-//
-//        var clickedbtn = document.getElementsByClassName('dice-value-'+this.id);
-//        console.log("test", clickedbtn);
-//        clickedbtn.addClass = 'holdit';
-//    });
+
 })
 
 // Add event listener to button in dice
@@ -154,8 +145,22 @@ $('.dice').each( function(){
 		yahtzeeModel.dices.forEach( function( dice ) {
             
             dice.throwIndividualDice();
+        
+              
+        });
+       yahtzeeModel.dices.forEach(function(){
+               var dicevalue = document.getElementsByClassName('dice-value');
+            var valuearray[]=dicevalue.value;
             
+            console.log(valuearray);
+           var i = 0;
+           while(valuearray[1] == valuearray[i])
+           {
+               i++;
+           }
+           var yahtzee = 50;
         })
+        //
 		
 	});
 
@@ -175,9 +180,10 @@ var dice2 = document.getElementsByClassName('2')
 var dice3 = document.getElementsByClassName('3')
 var dice4 = document.getElementsByClassName('4')
 var dice5 = document.getElementsByClassName('5')
-    if (dice1=dice2=dice3=dice4=dice5)
+    if (dice1==dice2)
     {
         var yahtzee = 50;
+        console.log('yahtzee');
     }
 }
 // Functionality used to make creation of die easier
