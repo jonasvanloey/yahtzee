@@ -110,6 +110,7 @@ $('.dice').each( function(){
 	// Retrieve lastly added dice from model
 	var currentDice = yahtzeeModel.dices[ lastlyAddedDiceKey ];
     currentDice.isVast = false;
+    currentDice.element = $(this);
     
     currentDice.throwIndividualDice = function() {
         
@@ -138,54 +139,92 @@ $('.dice').each( function(){
     
 
 })
-
+var value = [] ;
 // Add event listener to button in dice
 	$ ('.throw').on('click', function() {
+       
+        value = [];
 
 		yahtzeeModel.dices.forEach( function( dice ) {
             
-            dice.throwIndividualDice();
+            dice.throwIndividualDice();       
+       
         
-              
-        });
-       yahtzeeModel.dices.forEach(function(){
-               var dicevalue = document.getElementsByClassName('dice-value');
-            var valuearray[]=dicevalue.value;
             
-            console.log(valuearray);
-           var i = 0;
-           while(valuearray[1] == valuearray[i])
+       value.push(dice.publish());
+          console.log(value);
+         
+       
+          
+          
+          
+        
+          
+        });
+        var ones=0;
+          var twos=0;
+          var threes=0;
+          var fours=0;
+          var fives=0;
+          var sixes=0;
+          
+            
+           
+           
+          for (i=0;i<=5;i++)
+          {
+           while(value[1] == value[i])
            {
+               var yahtzee= 50;
                i++;
+               
+               
            }
-           var yahtzee = 50;
-        })
-        //
+          console.log(yahtzee);
+        
+          }
+          
+           for (i=0;i<5;i++)
+          {
+           if(value[i] ==1)
+           {
+               ones +=1;
+           }
+            if(value[i] ==2)
+           {
+               twos +=2;
+           }
+              if(value[i] ==3)
+           {
+               threes +=3;
+           }
+              if(value[i] ==4)
+           {
+               fours +=4;
+           }
+              if(value[i] ==5)
+           {
+               fives +=5;
+           }
+              if(value[i] ==6)
+           {
+               sixes +=6;
+           }
+        
+          }
+         console.log(ones);
+         console.log(twos);
+         console.log(threes);
+         console.log(fours);
+         console.log(fives);
+         console.log(sixes);
+        
 		
 	});
 
-/*function holddice(){
-   var clickedbtn = document.getElementsByClassName(this.id);
-    console.log(clickedbtn);
-    
-    
-    
-    
-}*/
 
 
-function yahtzee()
-{ var dice1 = document.getElementsByClassName('1')
-var dice2 = document.getElementsByClassName('2')
-var dice3 = document.getElementsByClassName('3')
-var dice4 = document.getElementsByClassName('4')
-var dice5 = document.getElementsByClassName('5')
-    if (dice1==dice2)
-    {
-        var yahtzee = 50;
-        console.log('yahtzee');
-    }
-}
+
 // Functionality used to make creation of die easier
 // @container jQuery object
 function createNewDice( container ) {
