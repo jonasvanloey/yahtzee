@@ -107,29 +107,87 @@ $('.dice').each( function(){
 	// Get key of lastly added dice
 	var lastlyAddedDiceKey = yahtzeeModel.dices.length - 1
 	
-	// Retrieve lastly added key from model
+	// Retrieve lastly added dice from model
 	var currentDice = yahtzeeModel.dices[ lastlyAddedDiceKey ];
-    var throwdice = document.getElementsByClassName('throw');
-   
-    console.log(throwdice);
+    currentDice.isVast = false;
+    
+    currentDice.throwIndividualDice = function() {
+        
+        if ( !currentDice.isVast )
+        {
+        // Generate number between 1-6
+        var randomNumber = Math.floor( Math.random() * 6  ) + 1
 
-	// Add event listener to button in dice
-	$ (throwdice).on('click', function() {
+        // Update dice value
+        currentDice.publish( randomNumber );
+        
+        }
+    }
+    
+    $( this ).find('.hold').on('click', function() {
+    
+        console.log("test");
+        $(this).toggleClass("holdit");
+        
+        if ( currentDice.isVast === false) {
+            currentDice.isVast = true;
+        } else {
+            currentDice.isVast = false;
+        };
+    })
+    
 
-		// Generate number between 1-6
-		var randomNumber = Math.floor( Math.random() * 6  ) + 1
-
-		// Update dice value
-		currentDice.publish( randomNumber );
-		
-	});
 })
 
-function holddice(){
-    var dice = document.getElementsByClassName("dice-value");
-    var onhold 
+// Add event listener to button in dice
+	$ ('.throw').on('click', function() {
+
+		yahtzeeModel.dices.forEach( function( dice ) {
+            
+            dice.throwIndividualDice();
+            
+            
+             
+        });
+   
+
+       yahtzeeModel.dices.forEach(function(){
+               var dicevalue = document.getElementsByClassName('dice-value');
+               var valuearray [] = dicevalue.value;
+            
+            console.log(valuearray);
+           var i = 0;
+           while(valuearray[1] == valuearray[i])
+           {
+               i++;
+           }
+           var yahtzee = 50;
+        })
+        //
+		
+	});
+
+/*function holddice(){
+   var clickedbtn = document.getElementsByClassName(this.id);
+    console.log(clickedbtn);
     
     
+    
+    
+}*/
+
+
+function yahtzee()
+{ var dice1 = document.getElementsByClassName('1')
+var dice2 = document.getElementsByClassName('2')
+var dice3 = document.getElementsByClassName('3')
+var dice4 = document.getElementsByClassName('4')
+var dice5 = document.getElementsByClassName('5')
+    if (dice1==dice2)
+    {
+        var yahtzee = 50;
+        console.log('yahtzee');
+    }
 }
 // Functionality used to make creation of die easier
 // @container jQuery object
@@ -149,3 +207,19 @@ function createNewDice( container ) {
 	// Return observable
 	return dice;
 }
+
+var count = 1;
+var countFunc = function(){	
+    	console.log(count)
+    	count ++;
+    	if (count > 4) {
+    		$('.throw').off('click');
+    	};
+}
+
+
+
+    
+ 
+
+
