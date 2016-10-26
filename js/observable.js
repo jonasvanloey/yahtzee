@@ -140,10 +140,12 @@ $('.dice').each( function(){
 
 })
 var value = [] ;
+
 // Add event listener to button in dice
 	$ ('.throw').on('click', function() {
        
         value = [];
+
 
 		yahtzeeModel.dices.forEach( function( dice ) {
             
@@ -218,6 +220,38 @@ var value = [] ;
          console.log(fours);
          console.log(fives);
          console.log(sixes);
+        value.length=5;
+
+        //kleine straat
+        console.log(value);
+
+        value = value.sort();
+        var small_straight;
+
+        if(/1234|2345|3456/.test(value.join("").replace(/(.)\1/,"$1")))
+        {
+            console.log('kleine straat');
+            small_straight=30;
+        }
+
+        //grote straat
+        var big_straight;
+        if(/12345|23456/.test(value.join("").replace(/(.)\1/,"$1")))
+        {
+            console.log('grote straat');
+            big_straight=40;
+        }
+        //full house
+        var full_house;
+        if(/123456/.test(value.join("").replace(/(.)\1/,"$1")))
+        {
+            console.log('full house');
+            full_house=50;
+        }
+
+
+        console.log(value);
+
         
 		
 	});
