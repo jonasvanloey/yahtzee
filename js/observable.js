@@ -91,6 +91,8 @@ function evaluateScore( ) {
 
 	// Publish the score
 	yahtzeeModel.score.publish( score );
+
+
 }
 
 
@@ -110,6 +112,7 @@ $('.dice').each( function(){
 	// Retrieve lastly added dice from model
 	var currentDice = yahtzeeModel.dices[ lastlyAddedDiceKey ];
     currentDice.isVast = false;
+    currentDice.element = $(this);
     
     currentDice.throwIndividualDice = function() {
         
@@ -138,57 +141,150 @@ $('.dice').each( function(){
     
 
 })
+var value = [] ;
 
 // Add event listener to button in dice
 	$ ('.throw').on('click', function() {
+       
+        value = [];
+
 
 		yahtzeeModel.dices.forEach( function( dice ) {
             
-            dice.throwIndividualDice();
+            dice.throwIndividualDice();       
+       
+        
             
-            
-             
+       value.push(dice.publish());
+          console.log(value);
+         
+       
+          
+          
+          
+        
+          
         });
-   
-
-       yahtzeeModel.dices.forEach(function(){
-               var dicevalue = document.getElementsByClassName('dice-value');
-               var valuearray [] = dicevalue.value;
+        var ones=0;
+          var twos=0;
+          var threes=0;
+          var fours=0;
+          var fives=0;
+          var sixes=0;
+          
             
-            console.log(valuearray);
-           var i = 0;
-           while(valuearray[1] == valuearray[i])
+           
+           
+          for (i=0;i<=5;i++)
+          {
+           while(value[1] == value[i])
            {
+               var yahtzee= 50;
                i++;
+               
+               
            }
-           var yahtzee = 50;
-        })
-        //
+          console.log(yahtzee);
+        
+          }
+          
+           for (i=0;i<5;i++)
+          {
+           if(value[i] ==1)
+           {
+               ones +=1;
+           }
+            if(value[i] ==2)
+           {
+               twos +=2;
+           }
+              if(value[i] ==3)
+           {
+               threes +=3;
+           }
+              if(value[i] ==4)
+           {
+               fours +=4;
+           }
+              if(value[i] ==5)
+           {
+               fives +=5;
+           }
+              if(value[i] ==6)
+           {
+               sixes +=6;
+           }
+        
+          }
+         console.log(ones);
+         console.log(twos);
+         console.log(threes);
+         console.log(fours);
+         console.log(fives);
+         console.log(sixes);
+        value.length=5;
+
+
+        //sum
+        
+        var sum = ones + twos + threes + fours + fives + sixes;
+
+  		if (ones>0 && twos>0 && threes>0 && fours>0 && fives>0 && sixes>0) {
+        	console.log(sum);
+    	}
+
+        
+        
+        //bonus
+        
+        var bonus;
+
+        if(sum > 63)
+        {
+        	bonus = 35;
+        	console.log(bonus);
+        }
+
+        //kleine straat
+        console.log(value);
+
+        value = value.sort();
+        var small_straight;
+
+        if(/1234|2345|3456/.test(value.join("").replace(/(.)\1/,"$1")))
+        {
+            console.log('kleine straat');
+            small_straight=30;
+        }
+
+        //grote straat
+        var big_straight;
+        if(/12345|23456/.test(value.join("").replace(/(.)\1/,"$1")))
+        {
+            console.log('grote straat');
+            big_straight=40;
+        }
+        //full house
+        var full_house;
+        if(/123456/.test(value.join("").replace(/(.)\1/,"$1")))
+        {
+            console.log('full house');
+            full_house=50;
+        }
+
+
+        console.log(value);
+
+
+        if (small_straight>0) {
+			('small-value' + small_straight); 
+        }
 		
 	});
 
-/*function holddice(){
-   var clickedbtn = document.getElementsByClassName(this.id);
-    console.log(clickedbtn);
-    
-    
-    
-    
-}*/
 
 
-function yahtzee()
-{ var dice1 = document.getElementsByClassName('1')
-var dice2 = document.getElementsByClassName('2')
-var dice3 = document.getElementsByClassName('3')
-var dice4 = document.getElementsByClassName('4')
-var dice5 = document.getElementsByClassName('5')
-    if (dice1==dice2)
-    {
-        var yahtzee = 50;
-        console.log('yahtzee');
-    }
-}
+
 // Functionality used to make creation of die easier
 // @container jQuery object
 function createNewDice( container ) {
@@ -208,14 +304,17 @@ function createNewDice( container ) {
 	return dice;
 }
 
-var count = 1;
+/*var count = 1;
 var countFunc = function(){	
     	console.log(count)
     	count ++;
     	if (count > 4) {
     		$('.throw').off('click');
-    	};
-}
+    	}
+}*/
+
+
+
 
 
 
