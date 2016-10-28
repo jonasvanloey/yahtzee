@@ -169,22 +169,11 @@ var value = [] ;
           var fours=0;
           var fives=0;
           var sixes=0;
-          
-            
-           
-           
-          for (i=0;i<=5;i++)
-          {
-           while(value[1] == value[i])
-           {
-               var yahtzee= 50;
-               i++;
-               
-               
-           }
-          console.log(yahtzee);
-        
-          }
+
+
+
+
+
           
            for (i=0;i<5;i++)
           {
@@ -222,10 +211,109 @@ var value = [] ;
          console.log(sixes);
         value.length=5;
 
-        //kleine straat
+
+
+
         console.log(value);
 
         value = value.sort();
+
+
+        //yahtzee
+        var yahtzee;
+        if(/11111|22222|33333|44444|55555|66666/.test(value.join("").replace(/(.)\1/,"$1")))
+        {
+            console.log('yahtzee');
+            yahtzee=50;
+        }
+
+        //three of a kind
+        var three_of_a_kind=0;
+        var threeofakind = false;
+
+        for (var i = 1;i<=6;i++)
+        {
+            var count = 0;
+            for(var j =0;j<5;j++)
+            {
+
+                if (value[j]== i)
+                {
+
+                    count++;
+                }
+                if (count >2 )
+                {
+
+
+
+                    threeofakind = true;
+                    console.log('three of a kind');
+                }
+
+
+            }
+
+        }
+
+        if(threeofakind)
+        {
+            for(var k =0;k<5;k++)
+            {
+                three_of_a_kind+=value[k];
+            }
+        }
+        console.log(three_of_a_kind);
+
+        //four of a kind
+        var four_of_a_kind = 0;
+        var fourofakind = false;
+        for (var i = 1;i<=6;i++)
+        {
+            var count = 0;
+            for(var j =0;j<5;j++)
+            {
+
+                if (value[j]== i)
+                {
+
+                    count++;
+                }
+                if (count >3 )
+                {
+
+
+
+                    fourofakind= true;
+                    console.log('four of a kind');
+                }
+
+
+            }
+
+        }
+
+        if(fourofakind)
+        {
+            for(var k =0;k<5;k++)
+            {
+                four_of_a_kind+=value[k];
+            }
+        }
+        console.log(four_of_a_kind);
+
+        //chance
+        var chance =0;
+        for(var j =0;j<5;j++)
+            {
+                chance += value[j];
+
+
+            }
+
+        console.log(chance);
+
+        //kleine straat
         var small_straight;
 
         if(/1234|2345|3456/.test(value.join("").replace(/(.)\1/,"$1")))
@@ -243,19 +331,33 @@ var value = [] ;
         }
         //full house
         var full_house;
-        if(/123456/.test(value.join("").replace(/(.)\1/,"$1")))
+
+        if( (((value[0] == value[1]) && (value[1] == value[2])) && // Three of a Kind
+            (value[3] == value[4]) && // Two of a Kind
+            (value[2] != value[3])) ||
+            ((value[0] == value[1]) && // Two of a Kind
+            ((value[2] == value[3]) && (value[3] == value[4])) && // Three of a Kind
+            (value[1] != value[2])) )
         {
+            full_house = 25;
             console.log('full house');
-            full_house=50;
         }
+
 
 
         console.log(value);
 
-        
-		
-	});
 
+
+	});
+var count = 1;
+var countFunc = function(){
+    console.log(count);
+    count ++;
+    if (count > 4) {
+        $('.throw').off('click');
+    }
+}
 
 
 
