@@ -141,6 +141,12 @@ $('.dice').each( function(){
 
 })
 var value = [] ;
+var ones;
+var twos;
+var threes;
+var fours;
+var fives;
+var sixes;
 
 // Add event listener to button in dice
 	$ ('.throw').on('click', function() {
@@ -164,12 +170,12 @@ var value = [] ;
         
           
         });
-        var ones=0;
-          var twos=0;
-          var threes=0;
-          var fours=0;
-          var fives=0;
-          var sixes=0;
+        ones=0;
+        twos=0;
+        threes=0;
+        fours=0;
+        fives=0;
+        sixes=0;
 
 
 
@@ -351,6 +357,27 @@ var value = [] ;
 
 
 	});
+function sumAndBonus(){
+		
+		//sum
+        
+        var sum = ones + twos + threes + fours + fives + sixes;
+
+  		if (ones>0 && twos>0 && threes>0 && fours>0 && fives>0 && sixes>0) 
+  		{
+        	console.log(sum);
+    	}
+        
+        //bonus
+        
+        var bonus;
+
+        if(sum > 63)
+        {
+        	bonus = 35;
+        	console.log(bonus);
+        }
+  }
 
 var count = 1;
 var countFunc = function(){

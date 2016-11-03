@@ -2,16 +2,31 @@ body {
     font-family:sans-serif;
 }
 
+#Head {
+    width: 35em;
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+img {
+    width: 90%; 
+    margin-bottom: 3em
+}
+
+
+
 .dice {
     width: 100px;
     height: 150px;
 
-    margin: 16px;
+    margin: 12px;
     position: relative;
 
     background-color: #EEE;
     float:left;
-    border-radius: 0.5em; 
+    border-radius: 0.5em;
+    border: solid; 
+     
 }
 
 .dice-value {
@@ -28,8 +43,16 @@ body {
     padding:12px;
 }
 
+.dicethrow-functionality {
+    position: absolute;
+    bottom: 30%;
+    left: 0; right: 0;
+    text-align: center;
+    padding:12px;
+}
+
 body {
-    background-color: bisque; 
+    background-color: skyblue; 
     
 }
 
@@ -65,4 +88,9 @@ th {
     height: 12em;
     margin-left: auto; 
     margin-right: auto; 
+}
+
+.score {
+    text-align: center; 
+    font-weight: 800; 
 }
