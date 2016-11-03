@@ -68,7 +68,8 @@ var yahtzeeModel = {
 yahtzeeModel.score.subscribe(function updateScore() {
 
 	// Add newly published score to HTML
-    $('.score-value').html( yahtzeeModel.score.publish() ); 
+    $('.score-value').html( yahtzeeModel.score.publish() );
+
 
 })
 
@@ -350,6 +351,7 @@ var value = [] ;
 
 
 	});
+
 var count = 1;
 var countFunc = function(){
     console.log(count);
