@@ -94,3 +94,38 @@ th {
     text-align: center; 
     font-weight: 800; 
 }
+a.redtext
+{
+    color: red;
+}
+.scoresheet
+{
+     font-weight: bold;
+}
+#total
+{
+    color: #eac011;
+}
+.scoresheeta
+{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    
+}
+#rules{
+
+    visibility: hidden;
+}
+#repla
+{
+    width: 100px;
+    margin:auto;
+    margin-top: 20px;
+}
+#replay
+{
+    width: 100px;
+    height: 30px;
+    
+}
